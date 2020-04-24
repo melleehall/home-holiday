@@ -1,14 +1,29 @@
 import React from 'react'
-import Nav from './Nav/Nav'
-import Hero from './Hero/Hero'
-import './App.css'
+import { Route } from 'react-router-dom'
 
+import Hero from './Hero/Hero'
+import LandingMain from './LandingMain/LandingMain'
+import Footer from './Footer/Footer'
+import './App.css'
 
 function App() {
   return (
     <div className='app'>
-      <Nav />
-      <Hero />
+      <div className='header-container'>
+        <header>
+          <Hero />
+        </header>
+      </div>
+      <div className='main-container'>
+        <main>
+          <LandingMain />
+        </main>
+      </div>
+      <div className='footer-container'>
+        <footer>
+          <Footer />
+        </footer>
+      </div>
     </div>
   );
 }

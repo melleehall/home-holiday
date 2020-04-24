@@ -1,23 +1,24 @@
+h1 {
+  font-size: 29px;
+}
+
 /* The hero image */
 .hero-image {
-    background-color: blueviolet;
-    height: 500px;
-    width: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url("../Images/womansitting.jpg");
+  background-color: greenyellow;
+  height: 500px;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url("../Images/womansitting.jpg");
 
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: fixed;
-  top: 0;
-  left: 0;
   z-index: -1;
 }
 
 .hero-text {
   text-align: center;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
