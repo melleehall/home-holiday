@@ -1,10 +1,15 @@
-import React from 'react';
+import React from 'react'
+import Nav from './Nav/Nav'
+import Hero from './Hero/Hero'
+import './App.css'
+
 
 function App() {
   return (
-    <main className='App'>
-      {/* content goes here */}
-    </main>
+    <div className='app'>
+      <Nav />
+      <Hero />
+    </div>
   );
 }
 

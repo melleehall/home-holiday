@@ -1,0 +1,25 @@
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.logo-transparent-bckgrnd {
+    height: 55px;
+    width: 55px;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.nav-btn {
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    font-size: 18px;
+    background-color: transparent;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+}
