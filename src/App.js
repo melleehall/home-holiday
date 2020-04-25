@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import Hero from './Hero/Hero'
+import NavBackground from './NavBackground/NavBackground'
 import LandingMain from './LandingMain/LandingMain'
 import DashboardMain from './DashboardMain/DashboardMain'
 import AddTripMain from './AddTripMain/AddTripMain'
@@ -17,6 +18,18 @@ function App() {
           <Route 
               exact path='/'
               component={Hero}
+          />
+           <Route 
+            path = '/dashboard'
+            component={NavBackground}
+          />
+          <Route 
+            path = '/trips'
+            component={NavBackground}
+          />
+          <Route 
+            path = '/add-trip'
+            component={NavBackground}
           />
         </header>
       </div>

@@ -12,9 +12,9 @@ export default class LandingMain extends Component {
                     Home Holiday was inspired by the "virtual vacations" many people around the globe are currently creating in their living rooms and backyards while sheltering at home. 
                     This virtual vacation generator provides users with full "trip" itineraries that incorporate elements aimed at each of the 5 senses.
                 </p>
-            <button className='demo-btn'>
+            <NavLink to='/dashboard' className='demo-btn'>
                 DEMO
-            </button>
+            </NavLink>
             <div className='features-container'>
                 <LandingPageFeature />
                 <LandingPageFeature />
@@ -33,6 +33,9 @@ export default class LandingMain extends Component {
                 </p>
                 <p>
                     My hope is that <span className='bold'>home holiday</span> guides us all to focus on the unprecedented good... & maybe even carry a dose of this good stuff back with us to our post-quarantine lives.
+                </p>
+                <p>
+                    - Melanie
                 </p>
             </div>
             </div>

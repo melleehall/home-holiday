@@ -1,0 +1,14 @@
+.dashboard-stat {
+    color: black;
+    list-style-type: none;
+    padding: 10px;
+    margin: 0px auto;
+    width: 65%;
+    text-align: center;
+    color: white;
+}
+
+.dashboard-stat p {
+    border: 2px white solid;
+    padding: 10px;
+}

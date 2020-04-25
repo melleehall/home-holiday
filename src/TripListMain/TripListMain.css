@@ -1,0 +1,16 @@
+.trips-list-heading {
+    text-align: center;
+    font-size: 36px;
+    text-decoration: underline;
+    padding: 30px;
+}
+
+.trips-list-container {
+    background-image: linear-gradient(rgba(0, 0, 0, -0.7), rgba(0, 0, 0, -0.7)), url("../Images/mapwithpins.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    top: -84px;
+    padding-bottom: 150px;
+    height: 100%;
+}

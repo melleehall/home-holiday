@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    align-items: center;
+    height: 55px;
 }
 
 .logo-transparent-bckgrnd {
@@ -22,4 +24,8 @@
     font-weight: 700;
     color: white;
     cursor: pointer;
+}
+
+a {
+    text-decoration: none;
 }

@@ -8,10 +8,12 @@ export default class Nav extends Component {
     render() {
         return (
             <div className='nav-container'>
-                <img src={logo} alt='home holiday logo' className='logo-transparent-bckgrnd'/>
-                <button className='nav-btn'>Demo</button> 
-                <button className='nav-btn'>Trip List</button> 
-                <button className='nav-btn'>Login</button>
+                <NavLink to='/'>
+                    <img src={logo} alt='home holiday logo' className='logo-transparent-bckgrnd'/>
+                </NavLink>
+                <NavLink to='/dashboard' className='nav-btn'> Demo </NavLink> 
+                <NavLink to='/trips' className='nav-btn'> Trip List</NavLink> 
+                <NavLink to='/add-trip' className='nav-btn'> Add Trip </NavLink> 
             </div>
         )
     }

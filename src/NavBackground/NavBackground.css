@@ -1,0 +1,6 @@
+.nav-background {
+    background-color: #274f43;
+    height: 60px;
+    width: 100%;
+    z-index: -1;
+}
