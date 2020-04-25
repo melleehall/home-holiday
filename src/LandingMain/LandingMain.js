@@ -16,9 +16,9 @@ export default class LandingMain extends Component {
                 DEMO
             </NavLink>
             <div className='features-container'>
-                <LandingPageFeature />
-                <LandingPageFeature />
-                <LandingPageFeature />
+                <LandingPageFeature text='Explore hundreds of home holiday experiences'/>
+                <LandingPageFeature text='Create trips of your own and share them with friends'/>
+                <LandingPageFeature text='Increase your Wanderer Rank by completing trips'/>
             </div>
             <div className='quarantine-p'>
                 <h2>A note on quarantine - the inspiration for home holiday.</h2>

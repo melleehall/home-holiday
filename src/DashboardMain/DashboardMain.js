@@ -9,12 +9,21 @@ export default class DashboardMain extends Component {
                 <div className='dashboard-nav-container'>
                 </div>
                 <h2 className='stats-heading'>
-                    The Stats
+                    Dashboard
                 </h2>
                 <ul className='stat-list'>
-                    <DashboardStat />
-                    <DashboardStat />
-                    <DashboardStat />
+                    <DashboardStat 
+                        name='Trips Taken'
+                        stat='24'
+                    />
+                    <DashboardStat 
+                        name='Total Trips Planned'
+                        stat='187'
+                    />
+                    <DashboardStat 
+                        name='Wanderer Ranking'
+                        stat='Frequent Flyer'
+                    />
                 </ul>
             </div>
         )
