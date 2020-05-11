@@ -28,6 +28,11 @@
     background-color: lightblue;
 }
 
+.trip-element,
+.trip-resource {
+    display: block;
+}
+
 .separation-div {
     height: 5px;
     padding-top: 5px;

@@ -8,11 +8,11 @@ export default class Trip extends Component {
                 <h2 className='trip-heading'>{this.props.trip_name}</h2>
                 <p>{this.props.description}</p>
                 <ul className='trip-elements'>
-                    <li> <span className='sense-type'>{this.props.sense_one}</span> {this.props.element_one} </li>
-                    <li> <span className='sense-type'>{this.props.sense_two}</span> {this.props.element_two} </li>
-                    <li> <span className='sense-type'>{this.props.sense_three}</span> {this.props.element_three} </li>
-                    <li> <span className='sense-type'>{this.props.sense_four}</span> {this.props.element_four} </li>
-                    <li> <span className='sense-type'>{this.props.sense_five}</span> {this.props.element_five} </li>
+                    <li> <span className='sense-type'>{this.props.sense_one}</span> <span className='trip-element'>{this.props.element_one}</span> <span className='trip-resource'>{this.props.resource_one}</span></li>
+                    <li> <span className='sense-type'>{this.props.sense_two}</span> <span className='trip-element'>{this.props.element_two}</span> <span className='trip-resource'>{this.props.resource_two}</span></li>
+                    <li> <span className='sense-type'>{this.props.sense_three}</span> <span className='trip-element'>{this.props.element_three}</span> <span className='trip-resource'>{this.props.resource_three}</span></li>
+                    <li> <span className='sense-type'>{this.props.sense_four}</span> <span className='trip-element'>{this.props.element_four}</span> <span className='trip-resource'>{this.props.resource_four}</span></li>
+                    <li> <span className='sense-type'>{this.props.sense_five}</span> <span className='trip-element'>{this.props.element_five}</span> <span className='trip-resource'>{this.props.resource_five}</span></li>
                 </ul>
                 <div className='separation-div'></div>
             </li>
