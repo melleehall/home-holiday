@@ -15,12 +15,21 @@ import './App.css'
 export default class App extends Component {
   state = {
     trips: [],
+    tripsPlanned: '',
     error: null
   }
 
   setTrips = trips => {
     this.setState({
       trips,
+      error: null,
+    })
+  }
+
+  setPlannedTrips = plannedTrips => {
+    let plannedTripTotal = plannedTrips.totalCount;
+    this.setState({
+      tripsPlanned: plannedTripTotal,
       error: null,
     })
   }
@@ -42,7 +51,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    fetch(config.API_BASE_URL, {
+    fetch(`${config.API_BASE_URL}trips`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -56,6 +65,21 @@ export default class App extends Component {
     })
     .then(this.setTrips)
     .catch(e => this.setState({ e }))
+
+    fetch(`${config.API_BASE_URL}dashboard`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => {
+      if(!res.ok) {
+        this.setState({ error: res })
+      }
+      return res.json()
+    })
+    .then(this.setPlannedTrips)
+    .catch(e => this.setState({ e }))    
   }
 
 
@@ -63,6 +87,7 @@ export default class App extends Component {
   render() {
     const contextValue = {
       trips: this.state.trips,
+      tripsPlanned: this.state.tripsPlanned,
       removeTripFromState: this.handleRemoveTripFromState,
       addTripToState: this.handleAddTripToState,
     }

@@ -158,7 +158,7 @@ export default class AddTripForm extends Component {
 
         console.log(newTrip)
 
-        fetch(`${config.API_BASE_URL}`, {
+        fetch(`${config.API_BASE_URL}trips`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
