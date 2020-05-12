@@ -19,7 +19,6 @@ export default class App extends Component {
   }
 
   setTrips = trips => {
-    console.log(trips)
     this.setState({
       trips,
       error: null,
@@ -36,6 +35,7 @@ export default class App extends Component {
   }
 
   handleAddTripToState = newTrip => {
+    console.log(newTrip)
     this.setState({
       trips: [ ...this.state.trips, newTrip ],
     })

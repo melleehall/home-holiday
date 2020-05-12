@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import config from '../config'
+import TripsContext from '../TripsContext'
 import './AddTripForm.css'
 
+
 export default class AddTripForm extends Component {
+    static contextType = TripsContext;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -75,6 +79,7 @@ export default class AddTripForm extends Component {
                 touched: false
             },
             error: false,
+            success_msg: false
         }
     }
 
@@ -106,6 +111,26 @@ export default class AddTripForm extends Component {
         this.setState({ element_five: { value: element_five, touched: true }});
     }
 
+    updateResourceOne(resource_one) {
+        this.setState({ resource_one: { value: resource_one, touched: true }});
+    }
+
+    updateResourceTwo(resource_two) {
+        this.setState({ resource_two: { value: resource_two, touched: true }});
+    }
+
+    updateResourceThree(resource_three) {
+        this.setState({ resource_three: { value: resource_three, touched: true }});
+    }
+
+    updateResourceFour(resource_four) {
+        this.setState({ resource_four: { value: resource_four, touched: true }});
+    }
+
+    updateResourceFive(resource_five) {
+        this.setState({ resource_five: { value: resource_five, touched: true }});
+    }
+
     // need to add validation functions
 
     handleSubmit(event) {
@@ -131,6 +156,8 @@ export default class AddTripForm extends Component {
             resource_five: event.target['resource-five'].value
         }
 
+        console.log(newTrip)
+
         fetch(`${config.API_BASE_URL}`, {
             method: 'POST',
             headers: {
@@ -140,12 +167,30 @@ export default class AddTripForm extends Component {
         })
         .then(res => {
             if(!res.ok) {
+                console.log(res.status)
                 throw new Error(res.status)
             }
             return res.json()
         })
         .then(trip => {
             this.context.addTripToState(trip)
+        })
+        .then(data => {
+            this.setState({
+              success_msg: true,
+              trip_name: {value: ''},
+              description: {value: ''},
+              element_one: {value: ''},
+              resource_one: {value: ''},
+              element_two: {value: ''},
+              resource_two: {value: ''},
+              element_three: {value: ''},
+              resource_three: {value: ''},
+              element_four: {value: ''},
+              resource_four: {value: ''},
+              element_five: {value: ''},
+              resource_five: {value: ''},
+            })
         })
         .catch(e => {
             this.setState({error: true})
@@ -159,31 +204,51 @@ export default class AddTripForm extends Component {
                     <label htmlFor='trip-name'>
                         Trip Name
                     </label>
-                    <input type='text' name='trip-name' id='trip-name'
-                                    onChange={e => this.updateTripName(e.target.value)} aria-required="true" />
+                    <input 
+                        type='text' 
+                        name='trip-name' 
+                        id='trip-name'
+                        placeholder='Outerspace'
+                        onChange={e => this.updateTripName(e.target.value)} 
+                        aria-required="true" />
                     <label htmlFor='description'>
                         Description
                     </label>
-                    <input type='text' name='description' id='description'
-                                    onChange={e => this.updateDescription(e.target.value)} aria-required="true" />
+                    <input 
+                        type='text' 
+                        name='description' 
+                        id='description'
+                        placeholder='It is out of this world!'
+                        onChange={e => this.updateDescription(e.target.value)} 
+                        aria-required="true" />
                 </fieldset>
                 <fieldset className='trip-element-one'>
                     <label htmlFor='element-one'>
                         Element One
                     </label>
-                    <input type='text' name='element-one' id='element-one'
-                                    onChange={e => this.updateElementOne(e.target.value)} aria-required="true" />
+                    <input 
+                        type='text' 
+                        name='element-one' 
+                        id='element-one'
+                        placeholder='The sky is the limit for space-themed cocktails - but here are a few to get you started.'
+                        onChange={e => this.updateElementOne(e.target.value)} 
+                        aria-required="true" />
                     <label htmlFor='resource-one'>
                         Resource One
                     </label>
-                    <input type='text' name='resource-one' id='resource-one'
-                                    onChange={e => this.updateResourceOne(e.target.value)} aria-required="false" />
+                    <input 
+                        type='text' 
+                        name='resource-one' 
+                        id='resource-one'
+                        placeholder='https://www.drinkstuff.com/blog/new-horizon-space-inspired-cocktails/'
+                        onChange={e => this.updateResourceOne(e.target.value)} 
+                        aria-required="false" />
                     <label htmlFor='sense-one'>
                         Sense One
                     </label>
                     <select name='sense-one' id='sense-one'>
-                        <option>Touch</option>
                         <option>Taste</option>
+                        <option>Touch</option>
                         <option>Smell</option>
                         <option>Hear</option>
                         <option>See</option>
@@ -193,19 +258,27 @@ export default class AddTripForm extends Component {
                     <label htmlFor='element-two'>
                         Element Two
                     </label>
-                    <input type='text' name='element-two' id='element-two'
-                                    onChange={e => this.updateElementTwo(e.target.value)} aria-required="true" />
+                    <input 
+                        type='text' 
+                        name='element-two' 
+                        id='element-two'
+                        onChange={e => this.updateElementTwo(e.target.value)} 
+                        aria-required="true" />
                     <label htmlFor='resource-two'>
                         Resource Two
                     </label>
-                    <input type='text' name='resource-two' id='resource-two'
-                                    onChange={e => this.updateResourceTwo(e.target.value)} aria-required="false" />
+                    <input 
+                        type='text' 
+                        name='resource-two' 
+                        id='resource-two'
+                        onChange={e => this.updateResourceTwo(e.target.value)} 
+                        aria-required="false" />
                     <label htmlFor='sense-two'>
                         Sense Two
                     </label>
                     <select name='sense-two' id='sense-two'>
-                        <option>Touch</option>
                         <option>Taste</option>
+                        <option>Touch</option>
                         <option>Smell</option>
                         <option>Hear</option>
                         <option>See</option>
@@ -215,19 +288,27 @@ export default class AddTripForm extends Component {
                     <label htmlFor='element-three'>
                         Element Three
                     </label>
-                    <input type='text' name='element-three' id='element-three'
-                                    onChange={e => this.updateElementThree(e.target.value)} aria-required="true" />
+                    <input 
+                        type='text' 
+                        name='element-three' 
+                        id='element-three'
+                        onChange={e => this.updateElementThree(e.target.value)} 
+                        aria-required="true" />
                     <label htmlFor='resource-three'>
                         Resource Three
                     </label>
-                    <input type='text' name='resource-three' id='resource-three'
-                                    onChange={e => this.updateResourceThree(e.target.value)} aria-required="false" />
+                    <input 
+                        type='text' 
+                        name='resource-three' 
+                        id='resource-three'
+                        onChange={e => this.updateResourceThree(e.target.value)} 
+                        aria-required="false" />
                     <label htmlFor='sense-three'>
                         Sense Three
                     </label>
                     <select name='sense-three' id='sense-three'>
-                        <option>Touch</option>
                         <option>Taste</option>
+                        <option>Touch</option>
                         <option>Smell</option>
                         <option>Hear</option>
                         <option>See</option>
@@ -237,19 +318,27 @@ export default class AddTripForm extends Component {
                     <label htmlFor='element-four'>
                         Element Four
                     </label>
-                    <input type='text' name='element-four' id='element-four'
-                                    onChange={e => this.updateElementFour(e.target.value)} aria-required="true" />
+                    <input 
+                        type='text' 
+                        name='element-four' 
+                        id='element-four'
+                        onChange={e => this.updateElementFour(e.target.value)} 
+                        aria-required="true" />
                     <label htmlFor='resource-four'>
                         Resource Four
                     </label>
-                    <input type='text' name='resource-four' id='resource-four'
-                                    onChange={e => this.updateResourceFour(e.target.value)} aria-required="false" />
+                    <input 
+                        type='text' 
+                        name='resource-four' 
+                        id='resource-four'
+                        onChange={e => this.updateResourceFour(e.target.value)} 
+                        aria-required="false" />
                     <label htmlFor='sense-four'>
                         Sense Four
                     </label>
                     <select name='sense-four' id='sense-four'>
-                        <option>Touch</option>
                         <option>Taste</option>
+                        <option>Touch</option>
                         <option>Smell</option>
                         <option>Hear</option>
                         <option>See</option>
@@ -259,13 +348,21 @@ export default class AddTripForm extends Component {
                     <label htmlFor='element-five'>
                         Element Five
                     </label>
-                    <input type='text' name='element-five' id='element-five'
-                                    onChange={e => this.updateElementFive(e.target.value)} aria-required="true" />
+                    <input 
+                        type='text' 
+                        name='element-five' 
+                        id='element-five'
+                        onChange={e => this.updateElementFive(e.target.value)} 
+                        aria-required="true" />
                     <label htmlFor='resource-five'>
                         Resource Five
                     </label>
-                    <input type='text' name='resource-five' id='resource-five'
-                                    onChange={e => this.updateResourceTwo(e.target.value)} aria-required="false" />
+                    <input 
+                        type='text' 
+                        name='resource-five' 
+                        id='resource-five'
+                        onChange={e => this.updateResourceTwo(e.target.value)} 
+                        aria-required="false" />
                     <label htmlFor='sense-five'>
                         Sense Five
                     </label>
@@ -277,9 +374,12 @@ export default class AddTripForm extends Component {
                         <option>See</option>
                     </select>
                 </fieldset>
-                <button>
+                <button className='submit-btn'>
                     Submit
                 </button>
+                <p className='success_msg'>
+                    <b>{this.state.success_msg ? 'Your contact information was successfully submitted.  Thank you!' : 'All fields are required' }</b> 
+                </p>
             </form>
         )
     }

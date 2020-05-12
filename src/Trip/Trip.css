@@ -1,7 +1,7 @@
 .trip-item {
     list-style-type: none;
     padding: 30px;
-    margin: 30px auto;
+    margin: 10px auto;
     color: black;
     /* background-color: aquamarine; */
     font-size: 18px;
@@ -20,8 +20,10 @@
     list-style-type: none;
     line-height: 1.8;
     overflow-wrap: break-word;
+    padding-left: 20px;
 }
 
+.trip-heading,
 .sense-type {
     border: 1px solid black;
     padding: 5px;
@@ -33,8 +35,21 @@
     display: block;
 }
 
+button {
+    margin-left: 10px;
+    border-radius: 25px;
+    font-size: 16px;
+    width: 200px;
+}
+
+.trip-resource:focus,
+.trip-resource:hover,
+.trip-resource:visited {
+    color: black;
+}
+
 .separation-div {
     height: 5px;
-    padding-top: 5px;
+    margin-top: 55px;
     background-color: lightblue;
 }
