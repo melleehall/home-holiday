@@ -234,7 +234,7 @@ export default class AddTripForm extends Component {
                         onChange={e => this.updateElementOne(e.target.value)} 
                         aria-required="true" />
                     <label htmlFor='resource-one'>
-                        Resource One
+                        Resource One [Must be a url]
                     </label>
                     <input 
                         type='text' 
@@ -265,7 +265,7 @@ export default class AddTripForm extends Component {
                         onChange={e => this.updateElementTwo(e.target.value)} 
                         aria-required="true" />
                     <label htmlFor='resource-two'>
-                        Resource Two
+                        Resource Two [Must be a url]
                     </label>
                     <input 
                         type='text' 
@@ -325,7 +325,7 @@ export default class AddTripForm extends Component {
                         onChange={e => this.updateElementFour(e.target.value)} 
                         aria-required="true" />
                     <label htmlFor='resource-four'>
-                        Resource Four
+                        Resource Four [Must be a url]
                     </label>
                     <input 
                         type='text' 
@@ -355,7 +355,7 @@ export default class AddTripForm extends Component {
                         onChange={e => this.updateElementFive(e.target.value)} 
                         aria-required="true" />
                     <label htmlFor='resource-five'>
-                        Resource Five
+                        Resource Five [Must be a url]
                     </label>
                     <input 
                         type='text' 
