@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import TripsContext from '../TripsContext'
 import './DashboardStat.css' 
 
 export default class DashboardStat extends Component {

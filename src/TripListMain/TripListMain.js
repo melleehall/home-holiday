@@ -27,6 +27,7 @@ function TripListMain(props) {
                 element_five={trip.element_five} 
                 sense_five={trip.sense_five}
                 resource_five={trip.resource_five}
+                is_taken={trip.is_taken}
             />  
         )
         return tripInstances
