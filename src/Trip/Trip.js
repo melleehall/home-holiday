@@ -85,11 +85,13 @@ export default class Trip extends Component {
     }
 
         const id = this.props.id
+        const status = this.state.is_taken
 
         return (
             <li className='trip-item'>
                 <div className='trip-header-container'>
                     <h2 className='trip-heading'>{this.props.trip_name}</h2>
+                    <div className='delete-trip-container'>
                     <TripsContext.Consumer>
                             {(context) => {
                                 return <button 
@@ -106,32 +108,46 @@ export default class Trip extends Component {
                                 </button>                        
                             }} 
                     </TripsContext.Consumer>
+                    </div>
                 </div>
-                <p>{this.props.description}</p>
+                <p className='trip-description'>{this.props.description}</p>
                 <ul className='trip-elements'>
-                    <li> <span className='sense-type'>{this.props.sense_one}</span> <button><a target='_blank' rel="noopener noreferrer" href={this.props.resource_one} className='trip-resource'>Visit Element Resource</a></button> <span className='trip-element'>{this.props.element_one}</span></li>
-                    <li> <span className='sense-type'>{this.props.sense_two}</span> <button><a target='_blank' rel="noopener noreferrer" href={this.props.resource_two} className='trip-resource'>Visit Element Resource</a></button><span className='trip-element'>{this.props.element_two}</span> </li>
-                    <li> <span className='sense-type'>{this.props.sense_three}</span> <button><a target='_blank' rel="noopener noreferrer" href={this.props.resource_three} className='trip-resource'>Visit Element Resource</a></button> <span className='trip-element'>{this.props.element_three}</span> </li>
-                    <li> <span className='sense-type'>{this.props.sense_four}</span> <button><a target='_blank' rel="noopener noreferrer" href={this.props.resource_four} className='trip-resource'>Visit Element Resource</a></button> <span className='trip-element'>{this.props.element_four}</span> </li>
-                    <li> <span className='sense-type'>{this.props.sense_five}</span> <button><a target='_blank' rel="noopener noreferrer" href={this.props.resource_five} className='trip-resource'>Visit Element Resource</a></button> <span className='trip-element'>{this.props.element_five}</span> </li>
+                    <li> <span className='sense-type'>{this.props.sense_one}</span> <span className='trip-element'>{this.props.element_one}</span> <button className='trip-resource'><a target='_blank' rel="noopener noreferrer" href={this.props.resource_one}>Visit Element Resource</a></button> </li>
+                    <li> <span className='sense-type'>{this.props.sense_two}</span> <span className='trip-element'>{this.props.element_two}</span> <button className='trip-resource'><a target='_blank' rel="noopener noreferrer" href={this.props.resource_two}>Visit Element Resource</a></button></li>
+                    <li> <span className='sense-type'>{this.props.sense_three}</span> <span className='trip-element'>{this.props.element_three}</span> <button className='trip-resource'><a target='_blank' rel="noopener noreferrer" href={this.props.resource_three}>Visit Element Resource</a></button> </li>
+                    <li> <span className='sense-type'>{this.props.sense_four}</span> <span className='trip-element'>{this.props.element_four}</span> <button className='trip-resource'><a target='_blank' rel="noopener noreferrer" href={this.props.resource_four}>Visit Element Resource</a></button> </li>
+                    <li> <span className='sense-type'>{this.props.sense_five}</span> <span className='trip-element'>{this.props.element_five}</span> <button className='trip-resource'><a target='_blank' rel="noopener noreferrer" href={this.props.resource_five}>Visit Element Resource</a></button> </li>
                 </ul>
                 <form 
                     className='modify-trip'
                     onSubmit={this.handleSubmit}>
-                    <label htmlFor='request_service'>
-                        Mark Trip Complete
-                    </label>
-                    <input
-                        type='checkbox'
-                        name='trip_complete'
-                        checked={this.state.is_taken}
-                        onChange={this.toggleTripTaken}
-                        id='trip_complete'
-                    />
-                    <button type='submit'>Save</button>
+                    <div className='complete-trip-container'>
+                        <label htmlFor='request_service'>
+                            Trip Status: <b>{this.state.is_taken ? 'Yes!' : 'Not yet!' }</b> 
+                        </label>
+                        <input
+                            type='checkbox'
+                            name='trip_complete'
+                            checked={this.state.is_taken}
+                            onChange={this.toggleTripTaken}
+                            id='trip_complete'
+                        />
+                        <button type='submit' className='save-btn'>Save</button>
+                    </div>
                     <p className='success_msg'>
                         <b>{this.state.success_msg ? 'Trip status updated!' : '' }</b> 
                     </p>
+                </form>
+                <form 
+                    className='modify-trip'
+                    onSubmit={this.handleSubmit}>
+                    <div className='complete-trip-container'>
+                        <label htmlFor='request_service'>
+                            Trip Kudos: {this.props.kudos} 
+                        </label>
+                        <button className='kudos-btn up'>^</button>
+                        <button className='kudos-btn down'>^</button>
+                    </div>
                 </form>
                 <div className='separation-div'></div>
             </li>

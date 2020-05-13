@@ -2,6 +2,8 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Trip from '../Trip/Trip'
 import TripsContext from '../TripsContext'
+import Mapwithpins from '../Images/mapwithpins.jpg'
+import Backyardmovie from '../Images/backyardmovie.jpg'
 import './TripListMain.css'
 
 function TripListMain(props) {
@@ -28,6 +30,7 @@ function TripListMain(props) {
                 sense_five={trip.sense_five}
                 resource_five={trip.resource_five}
                 is_taken={trip.is_taken}
+                kudos={trip.kudos}
             />  
         )
         return tripInstances
@@ -35,11 +38,13 @@ function TripListMain(props) {
 
     return (
         <div className='trips-list-container'>
+            <img src={Mapwithpins} alt='map with pins' className='map-with-pins'/>
             <TripsContext.Consumer> 
                 {(context) => {
                     return generateTripInstances(context.trips)
                 }} 
             </TripsContext.Consumer>
+            <img src={Backyardmovie} alt='backyard projector movie with palm trees' className='backyard-movie'/>
         </div>
     )
 }
