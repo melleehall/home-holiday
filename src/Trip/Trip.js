@@ -73,7 +73,9 @@ export default class Trip extends Component {
                     <li> <span className='sense-type'>{this.props.sense_four}</span> <button><a target='_blank' rel="noopener noreferrer" href={this.props.resource_four} className='trip-resource'>Visit Element Resource</a></button> <span className='trip-element'>{this.props.element_four}</span> </li>
                     <li> <span className='sense-type'>{this.props.sense_five}</span> <button><a target='_blank' rel="noopener noreferrer" href={this.props.resource_five} className='trip-resource'>Visit Element Resource</a></button> <span className='trip-element'>{this.props.element_five}</span> </li>
                 </ul>
-                <form onSubmit={this.handleSubmit}>
+                <form 
+                    className='modify-trip'
+                    onSubmit={this.handleSubmit}>
                     <label htmlFor='request_service'>
                         Mark Trip Complete
                     </label>

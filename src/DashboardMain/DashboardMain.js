@@ -5,11 +5,35 @@ import './DashboardMain.css'
 
 export default class DashboardMain extends Component {
     render() {
-        function generateStats (tripsPlanned) {
-            return <DashboardStat 
-                        name='Total Trips Planned'
-                        stat={tripsPlanned}
-            />
+        function generateStats (context) {
+            let status;
+
+            if (context.tripsTaken > 10) {
+                status = 'Global Citizen'
+            } else if (context.tripsTaken > 5) {
+                status = 'Expert Explorer'
+            } else if (context.tripsTaken > 2){
+                status = 'Frequent Flyer'
+            } else {
+                status = 'Fresh Passport'
+            }
+
+              const statInstances = <ul className='stat-list'>
+                        <DashboardStat 
+                            name='Total Trips Planned'
+                            stat={context.tripsPlanned}
+                        />
+                        <DashboardStat 
+                            name='Trips Taken'
+                            stat={context.tripsTaken}
+                        />
+                        <DashboardStat 
+                            name='Wanderer Ranking'
+                            stat={status}
+                        />
+                    </ul>
+
+            return statInstances
         }
 
         return (
@@ -19,21 +43,11 @@ export default class DashboardMain extends Component {
                 <h2 className='stats-heading'>
                     Dashboard
                 </h2>
-                <ul className='stat-list'>
                 <TripsContext.Consumer> 
                 {(context) => {
-                    return generateStats(context.tripsPlanned)
+                    return generateStats(context)
                 }}
                 </TripsContext.Consumer> 
-                    <DashboardStat 
-                        name='Trips Taken'
-                        stat='24'
-                    />
-                    <DashboardStat 
-                        name='Wanderer Ranking'
-                        stat='Frequent Flyer'
-                    />
-                </ul>
             </div>
         )
     }

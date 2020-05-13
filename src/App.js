@@ -16,6 +16,7 @@ export default class App extends Component {
   state = {
     trips: [],
     tripsPlanned: '',
+    tripsTaken: '',
     error: null
   }
 
@@ -30,6 +31,14 @@ export default class App extends Component {
     let plannedTripTotal = plannedTrips.totalCount;
     this.setState({
       tripsPlanned: plannedTripTotal,
+      error: null,
+    })
+  }
+
+  setTakenTrips = takenTrips => {
+    let takenTripTotal = takenTrips.totalCount;
+    this.setState({
+      tripsTaken: takenTripTotal,
       error: null,
     })
   }
@@ -80,6 +89,21 @@ export default class App extends Component {
     })
     .then(this.setPlannedTrips)
     .catch(e => this.setState({ e }))    
+
+    fetch(`${config.API_BASE_URL}dashboard/taken`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => {
+      if(!res.ok) {
+        this.setState({ error: res })
+      }
+      return res.json()
+    })
+    .then(this.setTakenTrips)
+    .catch(e => this.setState({ e })) 
   }
 
 
@@ -88,6 +112,7 @@ export default class App extends Component {
     const contextValue = {
       trips: this.state.trips,
       tripsPlanned: this.state.tripsPlanned,
+      tripsTaken: this.state.tripsTaken,
       removeTripFromState: this.handleRemoveTripFromState,
       addTripToState: this.handleAddTripToState,
     }

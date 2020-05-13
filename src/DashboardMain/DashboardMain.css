@@ -20,6 +20,8 @@
     background-color: olive;
     color:white;
     margin-top: -50px;
+    padding-bottom: 50px;
+    margin-bottom: -50px;
 }
 
 .stat-list {

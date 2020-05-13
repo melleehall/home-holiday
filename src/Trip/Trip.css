@@ -48,6 +48,10 @@ button {
     color: black;
 }
 
+.modify-trip {
+    background-color: lightblue;
+}
+
 .separation-div {
     height: 5px;
     margin-top: 55px;
