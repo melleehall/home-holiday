@@ -5,6 +5,11 @@
     text-align: center;
 }
 
+h2 {
+    font-family: 'Caveat', cursive;
+    font-size: 34px;
+}
+
 .intro-p,
 .quarantine-p {
     padding: 10px 40px;
@@ -27,7 +32,6 @@
 }
 
 .features-container {
-    background-color: #88B04B;
     width: 100%;
 }
 

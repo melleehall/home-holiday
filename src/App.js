@@ -4,7 +4,6 @@ import TripsContext from './TripsContext'
 import config from './config'
 
 import Hero from './Hero/Hero'
-import NavBackground from './NavBackground/NavBackground'
 import LandingMain from  './LandingMain/LandingMain'
 import DashboardMain from './DashboardMain/DashboardMain'
 import AddTripMain from './AddTripMain/AddTripMain'
@@ -12,13 +11,29 @@ import TripListMain from './TripListMain/TripListMain'
 import Footer from './Footer/Footer'
 import './App.css'
 
+
+import SideDrawer from './SideDrawer/SideDrawer'
+import Backdrop from './Backdrop/Backdrop'
+import NavTwo from './NavTwo/NavTwo'
+
 export default class App extends Component {
   state = {
     trips: [],
     tripsPlanned: '',
     tripsTaken: '',
-    error: null
+    error: null,
+    sideDrawerOpen: false
   }
+
+  drawerToggleClickHandler = () => {
+    this.setState((prevState) => {
+      return {sideDrawerOpen: !prevState.sideDrawerOpen};
+    });
+  };
+
+  backdropClickHandler = () => {
+    this.setState({sideDrawerOpen: false});
+  };
 
   setTrips = trips => {
     this.setState({
@@ -117,26 +132,25 @@ export default class App extends Component {
       addTripToState: this.handleAddTripToState,
     }
 
+    let backdrop;
+
+    if (this.state.sideDrawerOpen) {
+      backdrop = <Backdrop click={this.backdropClickHandler} />
+    }
+
     return (
       <div className='app'>
+        <div className='App_nav'>
+            <NavTwo drawerClickHandler={this.drawerToggleClickHandler} />
+            <SideDrawer show={this.state.sideDrawerOpen} />
+            {backdrop}
+        </div>
         <TripsContext.Provider value={contextValue}>
           <div className='header-container'>
             <header>
               <Route 
                   exact path='/'
                   component={Hero}
-              />
-              <Route 
-                path = '/dashboard'
-                component={NavBackground}
-              />
-              <Route 
-                path = '/trips'
-                component={NavBackground}
-              />
-              <Route 
-                path = '/add-trip'
-                component={NavBackground}
               />
             </header>
           </div>

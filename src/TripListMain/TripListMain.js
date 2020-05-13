@@ -2,7 +2,6 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Trip from '../Trip/Trip'
 import TripsContext from '../TripsContext'
-import Mapwithpins from '../Images/mapwithpins.jpg'
 import Backyardmovie from '../Images/backyardmovie.jpg'
 import './TripListMain.css'
 
@@ -38,7 +37,6 @@ function TripListMain(props) {
 
     return (
         <div className='trips-list-container'>
-            <img src={Mapwithpins} alt='map with pins' className='map-with-pins'/>
             <TripsContext.Consumer> 
                 {(context) => {
                     return generateTripInstances(context.trips)
