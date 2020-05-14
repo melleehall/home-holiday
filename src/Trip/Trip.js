@@ -68,7 +68,6 @@ export default class Trip extends Component {
         e.preventDefault();
 
         let newKudos = kudos + 1
-        console.log(`kudos: ${newKudos}`)
 
         const updatedTrip = {
             "kudos": newKudos
@@ -170,8 +169,6 @@ export default class Trip extends Component {
     }
 
     render () {
-
-    
         function deleteTripRequest(tripId, cb) {
             fetch(`${config.API_BASE_URL}trips/${tripId}`, {
                 method: 'DELETE',
