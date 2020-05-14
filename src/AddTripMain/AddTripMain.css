@@ -1,10 +1,9 @@
 .add-trip-header {
     text-align: center;
-    border: 1px solid black;
     padding: 5px;
-    background-color: lightblue;
     width: 95%;
     margin: 0px auto;
+    font-size: 50px;
 }
 
 .add-trip-p {

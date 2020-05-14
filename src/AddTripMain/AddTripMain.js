@@ -6,7 +6,7 @@ export default class AddTripMain extends Component {
     render() {
         return (
             <div>
-                <h2 className='add-trip-header'>Add a Trip!</h2>
+                <h2 className='add-trip-header'>Where to Next?</h2>
                 <h3>Instructions</h3>
                 <p className='add-trip-p'>
                     Add a trip to our database so you can share it with others or save it for a rainy day for yourself!

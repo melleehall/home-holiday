@@ -1,10 +1,14 @@
-.stats-heading {
+.stats-header {
     font-size: 30px;
-    text-decoration: underline;
+    color: black;
+    padding: 5px;
+    width: 95%;
+    margin: 50px auto;
+    font-size: 50px;
+    text-align: center;
 }
 
 .dashboard-nav-container {
-    background-color: #800080;
     height: 100%;
     position: relative; 
     top: -100;
@@ -15,10 +19,9 @@
     flex-direction: column;
     align-items: center;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto;    
     width: 100%;
-    background-color: olive;
-    color:white;
+    color:black;
     margin-top: -50px;
     padding-bottom: 50px;
     margin-bottom: -50px;
@@ -26,4 +29,10 @@
 
 .stat-list {
     padding: 0;
+    background-color: olive;
+    width: 80%;
+}
+
+.stat-list li {
+    width: 200px;
 }

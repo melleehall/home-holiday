@@ -37,6 +37,7 @@ function TripListMain(props) {
 
     return (
         <div className='trips-list-container'>
+            <h2 className='trip-list-header'>Choose Your Adventure...</h2>
             <TripsContext.Consumer> 
                 {(context) => {
                     return generateTripInstances(context.trips)

@@ -40,7 +40,7 @@ export default class DashboardMain extends Component {
             <div className='dashboard-main-container'>
                 <div className='dashboard-nav-container'>
                 </div>
-                <h2 className='stats-heading'>
+                <h2 className='stats-header'>
                     Dashboard
                 </h2>
                 <TripsContext.Consumer> 
