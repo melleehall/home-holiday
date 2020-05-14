@@ -304,7 +304,7 @@ export default class AddTripForm extends Component {
                         onChange={e => this.updateResourceThree(e.target.value)} 
                         aria-required="false" />
                     <label htmlFor='sense-three'>
-                        Sense Three
+                        Sense Three [Must be a url]
                     </label>
                     <select name='sense-three' id='sense-three'>
                         <option>Taste</option>
@@ -367,8 +367,8 @@ export default class AddTripForm extends Component {
                         Sense Five
                     </label>
                     <select name='sense-five' id='sense-five'>
-                        <option>Touch</option>
                         <option>Taste</option>
+                        <option>Touch</option>
                         <option>Smell</option>
                         <option>Hear</option>
                         <option>See</option>

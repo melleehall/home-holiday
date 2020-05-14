@@ -7,7 +7,7 @@ export default class Trip extends Component {
     state = {
         error: null,
         is_taken: false,
-        success_msg: false
+        success_msg: false,
     }
 
     handleSubmit = e => {
@@ -16,9 +16,7 @@ export default class Trip extends Component {
         const tripUpdate = {
             is_taken: this.state.is_taken
         }
-        console.log(tripUpdate)
-        console.log(this.props.id)
-        console.log(`${config.API_BASE_URL}trips/${this.props.id}`)
+        
         this.setState({ error: null })
         fetch(`${config.API_BASE_URL}trips/${this.props.id}`, {
             method: 'PATCH',
@@ -58,34 +56,90 @@ export default class Trip extends Component {
           is_taken: !prevState.is_taken,
         }));
     }
+
     render () {
 
     
-    function deleteTripRequest(tripId, cb) {
-        console.log(`${config.API_BASE_URL}trips/${tripId}`)
-        fetch(`${config.API_BASE_URL}trips/${tripId}`, {
-            method: 'DELETE',
-            headers: {
-                'content-type': 'application/json'
+        function deleteTripRequest(tripId, cb) {
+            fetch(`${config.API_BASE_URL}trips/${tripId}`, {
+                method: 'DELETE',
+                headers: {
+                    'content-type': 'application/json'
+                }
+            })
+            .then(res => {
+                if (!res.ok) {
+                return res.json().then(error => {
+                    throw error
+                })
+                }
+            })
+            .then(data => {
+                cb(tripId)
+            })
+            .catch(e => {
+                console.error(e)
+            })
+
+        }
+
+        function handleClickUp(tripId, kudos) {
+            let newKudos = kudos + 1
+
+            const tripUpdate = {
+                "kudos": newKudos
             }
-        })
-        .then(res => {
-            if (!res.ok) {
-              return res.json().then(error => {
-                throw error
-              })
+
+            console.log(`${config.API_BASE_URL}trips/${tripId}`)
+            fetch(`${config.API_BASE_URL}trips/${tripId}`, {
+                method: 'PATCH',
+                body: JSON.stringify(tripUpdate),
+                headers: {
+                    'content-type': 'application/json'
+                }
+            })
+            .then(res => {
+                if (!res.ok) {
+                return res.json().then(error => {
+                    throw error
+                })
+                }
+            })
+            .catch(e => {
+                console.error(e)
+            })
+
+        }
+
+        function handleClickDown(tripId, kudos) {
+            let newKudos = kudos - 1
+
+            const tripUpdate = {
+                "kudos": newKudos
             }
-          })
-        .then(data => {
-            cb(tripId)
-        })
-        .catch(e => {
-            console.error(e)
-        })
-    }
+
+            console.log(`${config.API_BASE_URL}trips/${tripId}`)
+            fetch(`${config.API_BASE_URL}trips/${tripId}`, {
+                method: 'PATCH',
+                body: JSON.stringify(tripUpdate),
+                headers: {
+                    'content-type': 'application/json'
+                }
+            })
+            .then(res => {
+                if (!res.ok) {
+                return res.json().then(error => {
+                    throw error
+                })
+                }
+            })
+            .catch(e => {
+                console.error(e)
+            })
+        }
 
         const id = this.props.id
-        const status = this.state.is_taken
+        const kudos = this.props.kudos
 
         return (
             <li className='trip-item'>
@@ -140,17 +194,40 @@ export default class Trip extends Component {
                 </form>
                 <form 
                     className='modify-trip'
-                    onSubmit={this.handleSubmit}>
+                >
                     <div className='complete-trip-container'>
                         <label htmlFor='request_service'>
                             Trip Kudos: {this.props.kudos} 
                         </label>
-                        <button className='kudos-btn up'>^</button>
-                        <button className='kudos-btn down'>^</button>
+                        <button 
+                            className='kudos-btn up' 
+                            aria-label='upvote'
+                            aria-pressed='false'
+                            onClick={() => {
+                                handleClickUp(
+                                    id, kudos
+                                )
+                            }}
+                        >  
+                            ^
+                        </button>
+                        <button 
+                            className='kudos-btn down' 
+                            aria-label='downvote' 
+                            aria-pressed='false'
+                            onClick={() => {
+                                handleClickDown(
+                                    id, kudos
+                                )
+                            }}
+                        >
+                            ^
+                        </button>
                     </div>
                 </form>
                 <div className='separation-div'></div>
             </li>
         )
+
     }
 }

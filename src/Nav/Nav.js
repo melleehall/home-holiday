@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from '../Images/logot.png'
 import '../universalstyles.css'
 import './Nav.css';
 

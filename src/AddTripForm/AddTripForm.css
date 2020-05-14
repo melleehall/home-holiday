@@ -7,7 +7,9 @@ form {
     padding: 20px;
     margin: 20px;
     background-color: olive;
+    color: white;
     border-radius: 25px;
+    font-weight: 700;
 }
 
 .add-trip-required {
@@ -33,7 +35,14 @@ fieldset {
 
 input {
     width: 100%;
-    margin-top: 5px;
+    margin: 10px 0px;
+}
+
+select {
+    color: black;
+    text-align: center;
+    border: white solid 1px;
+    font-size: 16px;
 }
 
 .success_msg {
