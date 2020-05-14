@@ -9,7 +9,7 @@ export default class Nav extends Component {
         return (
             <div className='nav-container'>
                 <NavLink to='/'>
-                    <img src={logo} alt='home holiday logo' className='logo-transparent-bckgrnd'/>
+                    {/* <img src={logo} alt='home holiday logo' className='logo-transparent-bckgrnd'/> */}
                 </NavLink>
             </div>
         )
