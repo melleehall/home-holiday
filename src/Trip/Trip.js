@@ -83,7 +83,9 @@ export default class Trip extends Component {
 
         }
 
-        function handleClickUp(tripId, kudos) {
+        function handleClickUp(e, tripId, kudos) {
+            e.preventDefault();
+
             let newKudos = kudos + 1
 
             const tripUpdate = {
@@ -111,7 +113,8 @@ export default class Trip extends Component {
 
         }
 
-        function handleClickDown(tripId, kudos) {
+        function handleClickDown(e, tripId, kudos) {
+            e.preventDefault();
             let newKudos = kudos - 1
 
             const tripUpdate = {
@@ -203,9 +206,9 @@ export default class Trip extends Component {
                             className='kudos-btn up' 
                             aria-label='upvote'
                             aria-pressed='false'
-                            onClick={() => {
+                            onClick={(e) => {
                                 handleClickUp(
-                                    id, kudos
+                                    e, id, kudos
                                 )
                             }}
                         >  
@@ -215,9 +218,9 @@ export default class Trip extends Component {
                             className='kudos-btn down' 
                             aria-label='downvote' 
                             aria-pressed='false'
-                            onClick={() => {
+                            onClick={(e) => {
                                 handleClickDown(
-                                    id, kudos
+                                    e, id, kudos
                                 )
                             }}
                         >
