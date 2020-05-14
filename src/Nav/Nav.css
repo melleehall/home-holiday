@@ -30,6 +30,8 @@ a {
     text-decoration: none;
 }
 
-.active {
-    background-color: lightblue;
+@media (min-width: 768px) {
+    .active {
+        background-color: lightblue;
+    }
 }

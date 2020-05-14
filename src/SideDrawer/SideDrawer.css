@@ -35,19 +35,19 @@
     padding: 20px 10px;
     width: 80%;
     text-align: center;
-    background-color: lightblue;
 }
 
 .side-drawer a {
-    color: black;
+    color: lightblue;
+    font-family: 'Caveat', cursive;
     font-weight: 700;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 38px;
 }
 
 .side-drawer a:hover,
 .side-drawer a:active {
-    color: blue;
+    color: white;
 }
 
 @media (mid-width: 769px) {

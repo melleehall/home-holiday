@@ -4,6 +4,10 @@ import TripsContext from './TripsContext'
 import config from './config'
 
 import Hero from './Hero/Hero'
+import NavBackground from './NavBackground/NavBackground'
+import SideDrawer from './SideDrawer/SideDrawer'
+import Backdrop from './Backdrop/Backdrop'
+import NavTwo from './NavTwo/NavTwo'
 import LandingMain from  './LandingMain/LandingMain'
 import DashboardMain from './DashboardMain/DashboardMain'
 import AddTripMain from './AddTripMain/AddTripMain'
@@ -12,9 +16,7 @@ import Footer from './Footer/Footer'
 import './App.css'
 
 
-import SideDrawer from './SideDrawer/SideDrawer'
-import Backdrop from './Backdrop/Backdrop'
-import NavTwo from './NavTwo/NavTwo'
+
 
 export default class App extends Component {
   state = {
@@ -151,6 +153,18 @@ export default class App extends Component {
               <Route 
                   exact path='/'
                   component={Hero}
+              />
+              <Route 
+                path='/dashboard'
+                component={NavBackground}
+              />
+              <Route 
+                path='/add-trip'
+                component={NavBackground}
+              />
+              <Route 
+                path='/trips'
+                component={NavBackground}
               />
             </header>
           </div>
