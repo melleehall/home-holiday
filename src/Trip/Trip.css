@@ -91,9 +91,9 @@
 .trip-resource {
     background-color: black;
     margin: 15px auto;
-    padding: 2px 10px;
+    padding: 4px 14px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .modify-trip {

@@ -26,7 +26,7 @@ export default class DashboardMain extends Component {
                             stat={context.tripsPlanned}
                         />
                         <DashboardStat 
-                            name='Trips Taken'
+                            name='Total Trips Taken'
                             stat={context.tripsTaken}
                         />
                         <DashboardStat 
@@ -49,7 +49,7 @@ export default class DashboardMain extends Component {
                 }}
                 </TripsContext.Consumer> 
                 <img src={BackyardGuitar} alt='group enjoying guitar in yard' className='backyard-guitar'/>
-                <section className='wanderer-ranking-guide'>
+                <div className='wanderer-ranking-guide'>
                     <h2>Wonderer Ranks</h2>
                     <ul>
                         <li><span className='trip-count'>30+</span>Global Citizen</li>
@@ -57,7 +57,7 @@ export default class DashboardMain extends Component {
                         <li><span className='trip-count'>5+</span>Frequent Flyer</li>
                         <li><span className='trip-count'>0+</span>Fresh Passport</li>
                     </ul>
-                </section>
+                </div>
                 <img src={MapWithPins} alt='map with pins' className='map-with-pins'/>
             </div>
         )
