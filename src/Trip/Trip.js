@@ -4,9 +4,12 @@ import TripsContext from '../TripsContext'
 import './Trip.css'
 
 export default class Trip extends Component {
+    static contextType = TripsContext;
+
     state = {
         error: null,
         is_taken: false,
+        trip_kudos: '1',
         success_msg: false,
     }
 
@@ -47,6 +50,10 @@ export default class Trip extends Component {
     componentDidMount() {
         this.setState({
             is_taken: this.props.is_taken
+        });
+
+        this.setState({
+            trip_kudos: this.props.kudos
         })
     }
 
@@ -55,6 +62,111 @@ export default class Trip extends Component {
         this.setState(prevState => ({
           is_taken: !prevState.is_taken,
         }));
+    }
+
+    handleClickUp = (e, tripId, kudos) => {
+        e.preventDefault();
+
+        let newKudos = kudos + 1
+        console.log(`kudos: ${newKudos}`)
+
+        const updatedTrip = {
+            "kudos": newKudos
+        }
+
+        fetch(`${config.API_BASE_URL}trips/${tripId}`, {
+            method: 'PATCH',
+            body: JSON.stringify(updatedTrip),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(res => {
+            if (!res.ok) {
+            return res.json().then(error => {
+                throw error
+            })
+            }
+        })
+        .catch(e => {
+            console.error(e)
+        })
+
+        fetch(`${config.API_BASE_URL}trips/${tripId}`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(res => {
+            if (!res.ok) {
+                return res.json().then(error => {
+                    throw error
+                })
+            }
+            return res.json()
+        })
+        .then(data => {
+            let updatedKudos = data.kudos;
+            this.setState({
+                trip_kudos: updatedKudos
+            })
+        })
+        .catch(e => {
+            console.error(e)
+        })
+    }
+
+    handleClickDown = (e, tripId, kudos) => {
+        e.preventDefault();
+
+        let newKudos = kudos - 1
+
+        const updatedTrip = {
+            "kudos": newKudos
+        }
+
+        fetch(`${config.API_BASE_URL}trips/${tripId}`, {
+            method: 'PATCH',
+            body: JSON.stringify(updatedTrip),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(res => {
+            if (!res.ok) {
+            return res.json().then(error => {
+                throw error
+            })
+            }
+        })
+        .catch(e => {
+            console.error(e)
+        })
+
+        fetch(`${config.API_BASE_URL}trips/${tripId}`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(res => {
+            if (!res.ok) {
+                return res.json().then(error => {
+                    throw error
+                })
+            }
+            return res.json()
+        })
+        .then(data => {
+            let updatedKudos = data.kudos;
+            this.setState({
+                trip_kudos: updatedKudos
+            })
+        })
+        .catch(e => {
+            console.error(e)
+        })
     }
 
     render () {
@@ -83,66 +195,7 @@ export default class Trip extends Component {
 
         }
 
-        function handleClickUp(e, tripId, kudos) {
-            e.preventDefault();
-
-            let newKudos = kudos + 1
-
-            const tripUpdate = {
-                "kudos": newKudos
-            }
-
-            console.log(`${config.API_BASE_URL}trips/${tripId}`)
-            fetch(`${config.API_BASE_URL}trips/${tripId}`, {
-                method: 'PATCH',
-                body: JSON.stringify(tripUpdate),
-                headers: {
-                    'content-type': 'application/json'
-                }
-            })
-            .then(res => {
-                if (!res.ok) {
-                return res.json().then(error => {
-                    throw error
-                })
-                }
-            })
-            .catch(e => {
-                console.error(e)
-            })
-
-        }
-
-        function handleClickDown(e, tripId, kudos) {
-            e.preventDefault();
-            let newKudos = kudos - 1
-
-            const tripUpdate = {
-                "kudos": newKudos
-            }
-
-            console.log(`${config.API_BASE_URL}trips/${tripId}`)
-            fetch(`${config.API_BASE_URL}trips/${tripId}`, {
-                method: 'PATCH',
-                body: JSON.stringify(tripUpdate),
-                headers: {
-                    'content-type': 'application/json'
-                }
-            })
-            .then(res => {
-                if (!res.ok) {
-                return res.json().then(error => {
-                    throw error
-                })
-                }
-            })
-            .catch(e => {
-                console.error(e)
-            })
-        }
-
         const id = this.props.id
-        const kudos = this.props.kudos
 
         return (
             <li className='trip-item'>
@@ -200,31 +253,29 @@ export default class Trip extends Component {
                 >
                     <div className='complete-trip-container'>
                         <label htmlFor='request_service'>
-                            Trip Kudos: {this.props.kudos} 
+                            Trip Kudos: {this.state.trip_kudos} 
                         </label>
                         <button 
                             className='kudos-btn up' 
                             aria-label='upvote'
                             aria-pressed='false'
                             onClick={(e) => {
-                                handleClickUp(
-                                    e, id, kudos
+                                this.handleClickUp(
+                                    e, id, this.state.trip_kudos
                                 )
                             }}
-                        >  
-                            ^
+                        >^
                         </button>
                         <button 
                             className='kudos-btn down' 
                             aria-label='downvote' 
                             aria-pressed='false'
                             onClick={(e) => {
-                                handleClickDown(
-                                    e, id, kudos
+                                this.handleClickDown(
+                                    e, id, this.props.kudos
                                 )
                             }}
-                        >
-                            ^
+                        >^
                         </button>
                     </div>
                 </form>
