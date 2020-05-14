@@ -23,7 +23,6 @@
     width: 100%;
     color:black;
     margin-top: -50px;
-    padding-bottom: 50px;
     margin-bottom: -50px;
 }
 
@@ -35,4 +34,51 @@
 
 .stat-list li {
     width: 200px;
+}
+
+.wanderer-ranking-guide {
+    border: olive solid 1px;
+    width: 80%;
+    text-align: left;
+    padding: 20px 0px;
+}
+
+.wanderer-ranking-guide h2 {
+    font-family: 'Manrope', sans-serif;
+    text-align: center;
+    font-size: 26px;
+}
+
+.wanderer-ranking-guide li {
+    margin: 20px auto;
+    width: 85%;
+    font-family: 'Caveat', cursive;
+    font-size: 26px;
+    list-style: none;
+}
+
+.trip-count {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 20px;
+    margin-right: 20px;
+    background-color: olive;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    width: 50px;
+}
+
+.backyard-guitar,
+.map-with-pins {
+    width: 80%;
+    margin: 40px 0px;
+}
+
+
+/* Screens smaller than Pixel 2 */
+@media (max-width: 410px) {
+    .wanderer-ranking-guide li {
+        font-size: 20px;
+    }
 }
