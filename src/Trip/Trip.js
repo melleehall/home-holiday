@@ -6,13 +6,17 @@ import './Trip.css'
 export default class Trip extends Component {
     static contextType = TripsContext;
 
-    state = {
-        error: null,
-        is_taken: false,
-        trip_kudos: this.props.kudos,
-        success_msg: false,
-        kudos_error: false,
+    constructor(props) {
+        super(props)
+        this.state = {
+            error: null,
+            is_taken: false,
+            trip_kudos: this.props.kudos,
+            success_msg: false,
+            kudos_error: false,
+        }
     }
+    
 
 
     handleClickSave = (e, tripId, status) => {

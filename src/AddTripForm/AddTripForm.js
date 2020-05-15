@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import config from '../config'
 import TripsContext from '../TripsContext'
+import ValidationError from '../ValidationError'
+import urlRegex from 'url-regex'
 import './AddTripForm.css'
 
 
@@ -131,7 +133,113 @@ export default class AddTripForm extends Component {
         this.setState({ resource_five: { value: resource_five, touched: true }});
     }
 
-    // need to add validation functions
+    validateTripName() {
+        const name = this.state.trip_name.value.trim();
+        if (name.length === 0) {
+            return 'Name is required';
+        }  else if (name.length < 2) {
+            return 'Name must be at least 2 characters long'
+        } 
+    }
+
+    validateDescription() {
+        const description = this.state.description.value.trim();
+        if (description.length === 0) {
+            return 'Description is required';
+        } else if (description.length < 10) {
+            return 'Description must be at least 10 characters long'
+        }
+    }
+
+    validateElementOne() {
+        const element = this.state.element_one.value.trim();
+        if (element.length === 0) {
+            return 'Element is required';
+        } else if (element.length < 10) {
+            return 'Element description must be at least 15 characters long'
+        }
+    }
+
+    validateElementTwo() {
+        const element = this.state.element_two.value.trim();
+        if (element.length === 0) {
+            return 'Element is required';
+        } else if (element.length < 10) {
+            return 'Element description must be at least 15 characters long'
+        }
+    }
+
+    validateElementThree() {
+        const element = this.state.element_three.value.trim();
+        if (element.length === 0) {
+            return 'Element is required';
+        } else if (element.length < 10) {
+            return 'Element description must be at least 15 characters long'
+        }
+    }
+
+    validateElementFour() {
+        const element = this.state.element_four.value.trim();
+        if (element.length === 0) {
+            return 'Element is required';
+        } else if (element.length < 10) {
+            return 'Element description must be at least 15 characters long'
+        }
+    }
+
+    validateElementFive() {
+        const element = this.state.element_five.value.trim();
+        if (element.length === 0) {
+            return 'Element is required';
+        } else if (element.length < 10) {
+            return 'Element description must be at least 15 characters long'
+        }
+    }
+
+    validateResourceOne() {
+        const resource = this.state.resource_one.value.trim();
+        if (resource.length === 0) {
+            return 'Resource is required and must be a URL';
+        } else if (!resource.includes('https://') || !urlRegex({exact: true}).test(resource)) {
+            return 'Entry must be a valid URL beginning with https://'
+        }
+    }
+
+    validateResourceTwo() {
+        const resource = this.state.resource_two.value.trim();
+        if (resource.length === 0) {
+            return 'Resource is required and must be a URL';
+        } else if (!resource.includes('https://') || !urlRegex({exact: true}).test(resource)) {
+            return 'Entry must be a valid URL beginning with https://'
+        }
+    }
+
+    validateResourceThree() {
+        const resource = this.state.resource_three.value.trim();
+        if (resource.length === 0) {
+            return 'Resource is required and must be a URL';
+        } else if (!resource.includes('https://') || !urlRegex({exact: true}).test(resource)) {
+            return 'Entry must be a valid URL beginning with https://'
+        }
+    }
+
+    validateResourceFour() {
+        const resource = this.state.resource_four.value.trim();
+        if (resource.length === 0) {
+            return 'Resource is required and must be a URL';
+        } else if (!resource.includes('https://') || !urlRegex({exact: true}).test(resource)) {
+            return 'Entry must be a valid URL beginning with https://'
+        }
+    }
+
+    validateResourceFive() {
+        const resource = this.state.resource_five.value.trim();
+        if (resource.length === 0) {
+            return 'Resource is required and must be a URL';
+        } else if (!resource.includes('https://') || !urlRegex({exact: true}).test(resource)) {
+            return 'Entry must be a valid URL beginning with https://'
+        }
+    }
 
     handleSubmit(event) {
         event.preventDefault();
@@ -195,6 +303,19 @@ export default class AddTripForm extends Component {
     }
 
     render() {
+        const nameError = this.validateTripName();
+        const descriptionError = this.validateDescription();
+        const elementOneError = this.validateElementOne();
+        const elementTwoError = this.validateElementTwo();
+        const elementThreeError = this.validateElementThree();
+        const elementFourError = this.validateElementFour();
+        const elementFiveError = this.validateElementFive();
+        const resourceOneError = this.validateResourceOne();
+        const resourceTwoError = this.validateResourceTwo()
+        const resourceThreeError = this.validateResourceThree();
+        const resourceFourError = this.validateResourceFour();
+        const resourceFiveError = this.validateResourceFive();
+
         return (
             <form onSubmit={e => this.handleSubmit(e)}>
                 <fieldset className='name-description'>
@@ -209,6 +330,7 @@ export default class AddTripForm extends Component {
                         required aria-required="true"
                         onChange={e => this.updateTripName(e.target.value)} 
                     />
+                    {this.state.trip_name.touched && <ValidationError  message={nameError} />}
                     <label htmlFor='description'>
                         Description
                     </label>
@@ -220,6 +342,7 @@ export default class AddTripForm extends Component {
                         required aria-required="true"
                         onChange={e => this.updateDescription(e.target.value)} 
                     />
+                    {this.state.description.touched && <ValidationError  message={descriptionError} />}
                 </fieldset>
                 <fieldset className='trip-element-one'>
                     <label htmlFor='element-one'>
@@ -233,6 +356,7 @@ export default class AddTripForm extends Component {
                         required aria-required="true"
                         onChange={e => this.updateElementOne(e.target.value)} 
                     />
+                    {this.state.element_one.touched && <ValidationError  message={elementOneError} />}
                     <label htmlFor='resource-one'>
                         Resource One [Must be a url]
                     </label>
@@ -244,6 +368,7 @@ export default class AddTripForm extends Component {
                         required aria-required="true"
                         onChange={e => this.updateResourceOne(e.target.value)} 
                     />
+                    {this.state.resource_one.touched && <ValidationError  message={resourceOneError} />}
                     <label htmlFor='sense-one'>
                         Sense One
                     </label>
@@ -266,6 +391,7 @@ export default class AddTripForm extends Component {
                         required aria-required="true"
                         onChange={e => this.updateElementTwo(e.target.value)} 
                     />
+                    {this.state.element_two.touched && <ValidationError  message={elementTwoError} />}
                     <label htmlFor='resource-two'>
                         Resource Two [Must be a url]
                     </label>
@@ -276,6 +402,7 @@ export default class AddTripForm extends Component {
                         required aria-required="true"
                         onChange={e => this.updateResourceTwo(e.target.value)} 
                     />
+                    {this.state.resource_two.touched && <ValidationError  message={resourceTwoError} />}
                     <label htmlFor='sense-two'>
                         Sense Two
                     </label>
@@ -298,8 +425,9 @@ export default class AddTripForm extends Component {
                         required aria-required="true"
                         onChange={e => this.updateElementThree(e.target.value)} 
                     />
+                    {this.state.element_three.touched && <ValidationError  message={elementThreeError} />}
                     <label htmlFor='resource-three'>
-                        Resource Three
+                        Resource Three 
                     </label>
                     <input 
                         type='text' 
@@ -308,6 +436,7 @@ export default class AddTripForm extends Component {
                         required aria-required="true"
                         onChange={e => this.updateResourceThree(e.target.value)} 
                     />
+                    {this.state.resource_three.touched && <ValidationError  message={resourceThreeError} />}
                     <label htmlFor='sense-three'>
                         Sense Three [Must be a url]
                     </label>
@@ -330,6 +459,7 @@ export default class AddTripForm extends Component {
                         required aria-required="true"
                         onChange={e => this.updateElementFour(e.target.value)} 
                     />
+                    {this.state.element_four.touched && <ValidationError  message={elementFourError} />}
                     <label htmlFor='resource-four'>
                         Resource Four [Must be a url]
                     </label>
@@ -340,6 +470,7 @@ export default class AddTripForm extends Component {
                         required aria-required="true"
                         onChange={e => this.updateResourceFour(e.target.value)} 
                     />
+                    {this.state.resource_four.touched && <ValidationError  message={resourceFourError} />}
                     <label htmlFor='sense-four'>
                         Sense Four
                     </label>
@@ -362,6 +493,7 @@ export default class AddTripForm extends Component {
                         required aria-required="true"
                         onChange={e => this.updateElementFive(e.target.value)} 
                     />
+                    {this.state.element_five.touched && <ValidationError  message={elementFiveError} />}
                     <label htmlFor='resource-five'>
                         Resource Five [Must be a url]
                     </label>
@@ -372,6 +504,7 @@ export default class AddTripForm extends Component {
                         required aria-required="true"
                         onChange={e => this.updateResourceTwo(e.target.value)} 
                     />
+                    {this.state.resource_five.touched && <ValidationError  message={resourceFiveError} />}
                     <label htmlFor='sense-five'>
                         Sense Five
                     </label>
@@ -383,7 +516,12 @@ export default class AddTripForm extends Component {
                         <option>See</option>
                     </select>
                 </fieldset>
-                <button className='submit-btn'>
+                <button 
+                    className='submit-btn'
+                    disabled={
+                        this.validateTripName() ||
+                        this.validateDescription() 
+                    }>
                     Submit
                 </button>
                 <p className='success_msg'>
