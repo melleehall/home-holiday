@@ -9,7 +9,7 @@ export default class Trip extends Component {
     state = {
         error: null,
         is_taken: false,
-        trip_kudos: null,
+        trip_kudos: this.props.kudos,
         success_msg: false,
         kudos_error: false,
     }
@@ -53,10 +53,6 @@ export default class Trip extends Component {
         this.setState({
             is_taken: this.props.is_taken
         });
-
-        this.setState({
-            trip_kudos: this.props.kudos
-        })
     }
 
 
@@ -97,9 +93,8 @@ export default class Trip extends Component {
             return res.json()
         })
         .then(data => {
-            let count = data[0]
             this.setState({
-                trip_kudos: count
+                trip_kudos: data[0]
             })
         })
         .catch(e => {
@@ -139,9 +134,8 @@ export default class Trip extends Component {
             return res.json()
         })
         .then(data => {
-            let count = data[0]
             this.setState({
-                trip_kudos: count
+                trip_kudos: parseInt(data[0])
             })
         })
         .catch(e => {
@@ -266,7 +260,7 @@ export default class Trip extends Component {
                         </button>
                     </div>
                     <p className='kudos_error'>
-                        <b>{this.state.kudos_error ? 'Trip cannot have less than 1 kudo!' : '' }</b> 
+                        <b>{this.state.kudos_error ? 'Trips cannot be voted down to zero kudos!' : '' }</b> 
                     </p>
                 </form>
                 <div className='separation-div'></div>
