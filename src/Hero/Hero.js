@@ -11,7 +11,6 @@ export default class Hero extends Component {
                 <Nav />
                 <div className="hero-text">
                     <h1>home holiday</h1>
-                    <p></p>
                     <NavLink to='/dashboard' className='hero-btn'>
                         let's travel
                     </NavLink>
