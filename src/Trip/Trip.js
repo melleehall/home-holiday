@@ -9,8 +9,9 @@ export default class Trip extends Component {
     state = {
         error: null,
         is_taken: false,
-        trip_kudos: '1',
+        trip_kudos: null,
         success_msg: false,
+        kudos_error: false,
     }
 
     handleSubmit = e => {
@@ -67,6 +68,12 @@ export default class Trip extends Component {
     handleClickUp = (e, tripId, kudos) => {
         e.preventDefault();
 
+        if (kudos > 0) {
+            this.setState({
+                kudos_error: false
+            })
+        }
+
         let newKudos = kudos + 1
 
         const updatedTrip = {
@@ -82,23 +89,6 @@ export default class Trip extends Component {
         })
         .then(res => {
             if (!res.ok) {
-            return res.json().then(error => {
-                throw error
-            })
-            }
-        })
-        .catch(e => {
-            console.error(e)
-        })
-
-        fetch(`${config.API_BASE_URL}trips/${tripId}`, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json'
-            }
-        })
-        .then(res => {
-            if (!res.ok) {
                 return res.json().then(error => {
                     throw error
                 })
@@ -106,9 +96,10 @@ export default class Trip extends Component {
             return res.json()
         })
         .then(data => {
-            let updatedKudos = data.kudos;
+            let count = data[0]
+            console.log(`count after handleClickUp is ${count}`)
             this.setState({
-                trip_kudos: updatedKudos
+                trip_kudos: count
             })
         })
         .catch(e => {
@@ -118,6 +109,13 @@ export default class Trip extends Component {
 
     handleClickDown = (e, tripId, kudos) => {
         e.preventDefault();
+
+        if (kudos === 1) {
+            this.setState({
+                kudos_error: true
+            })
+            return;
+        }
 
         let newKudos = kudos - 1
 
@@ -134,23 +132,6 @@ export default class Trip extends Component {
         })
         .then(res => {
             if (!res.ok) {
-            return res.json().then(error => {
-                throw error
-            })
-            }
-        })
-        .catch(e => {
-            console.error(e)
-        })
-
-        fetch(`${config.API_BASE_URL}trips/${tripId}`, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json'
-            }
-        })
-        .then(res => {
-            if (!res.ok) {
                 return res.json().then(error => {
                     throw error
                 })
@@ -158,9 +139,10 @@ export default class Trip extends Component {
             return res.json()
         })
         .then(data => {
-            let updatedKudos = data.kudos;
+            let count = data[0]
+            console.log(`count after handleClickDown is ${count}`)
             this.setState({
-                trip_kudos: updatedKudos
+                trip_kudos: count
             })
         })
         .catch(e => {
@@ -265,16 +247,19 @@ export default class Trip extends Component {
                         </button>
                         <button 
                             className='kudos-btn down' 
-                            aria-label='downvote' 
+                            aria-label='downvote'
                             aria-pressed='false'
                             onClick={(e) => {
                                 this.handleClickDown(
-                                    e, id, this.props.kudos
+                                    e, id, this.state.trip_kudos
                                 )
                             }}
                         >^
                         </button>
                     </div>
+                    <p className='kudos_error'>
+                        <b>{this.state.kudos_error ? 'Trip cannot have less than 1 kudo!' : '' }</b> 
+                    </p>
                 </form>
                 <div className='separation-div'></div>
             </li>
