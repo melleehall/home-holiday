@@ -19,7 +19,7 @@ export default class Trip extends Component {
         e.preventDefault();
 
         const tripUpdate = {
-            is_taken: status
+            is_taken: status.toString()
         }
 
         console.log(tripUpdate)
@@ -39,9 +39,9 @@ export default class Trip extends Component {
             }
             return res.json()
         })
-        .then(data => {
-            console.log(data)
-        })
+        .then(data =>
+            console.log(data.toString())
+        )
         .catch(error => {
             this.setState({ error })
         })
