@@ -14,15 +14,17 @@ export default class Trip extends Component {
         kudos_error: false,
     }
 
-    handleSubmit = e => {
+
+    handleClickSave = (e, tripId, status) => {
         e.preventDefault();
 
         const tripUpdate = {
-            is_taken: this.state.is_taken
+            is_taken: status
         }
 
-        this.setState({ error: null })
-        fetch(`${config.API_BASE_URL}trips/${this.props.id}`, {
+        console.log(tripUpdate)
+
+        fetch(`${config.API_BASE_URL}trips/${tripId}`, {
             method: 'PATCH',
             body: JSON.stringify(tripUpdate),
             headers: {
@@ -38,17 +40,13 @@ export default class Trip extends Component {
             return res.json()
         })
         .then(data => {
-            let is_taken_status = data[0]
-            console.log(`is_taken_status after calling handleClickUp is ${is_taken_status}`)
-            this.setState({
-                is_taken: is_taken_status
-            })
+            console.log(data)
         })
         .catch(error => {
             this.setState({ error })
         })
-    }
 
+    }
 
 
     componentDidMount() {
@@ -210,13 +208,13 @@ export default class Trip extends Component {
                     <li> <span className='sense-type'>{this.props.sense_four}</span> <span className='trip-element'>{this.props.element_four}</span> <button className='trip-resource'><a target='_blank' rel="noopener noreferrer" href={this.props.resource_four}>Visit Element Resource</a></button> </li>
                     <li> <span className='sense-type'>{this.props.sense_five}</span> <span className='trip-element'>{this.props.element_five}</span> <button className='trip-resource'><a target='_blank' rel="noopener noreferrer" href={this.props.resource_five}>Visit Element Resource</a></button> </li>
                 </ul>
+             
                 <form 
                     className='modify-trip'
-                    onSubmit={this.handleSubmit}>
-                    <div className='complete-trip-container'>
-                        <label htmlFor='request_service'>
-                            Trip Status: <b>{this.state.is_taken ? 'Yes!' : 'Not yet!' }</b> 
-                        </label>
+                >       
+                    <label htmlFor='request_service'>
+                        Trip Status: <b>{this.state.is_taken ? 'Yes!' : 'Not yet!' }</b> 
+                    </label>
                         <input
                             type='checkbox'
                             name='trip_complete'
@@ -224,11 +222,18 @@ export default class Trip extends Component {
                             onChange={this.toggleTripTaken}
                             id='trip_complete'
                         />
-                        <button type='submit' className='save-btn'>Save</button>
-                    </div>
-                    <p className='success_msg'>
-                        <b>{this.state.success_msg ? 'Trip status updated!' : '' }</b> 
-                    </p>
+                        <button 
+                            className='kudos-btn up' 
+                            aria-label='upvote'
+                            aria-pressed='false'
+                            onClick={(e) => {
+                                this.handleClickSave(
+                                    e, id, this.state.is_taken
+                                )
+                            }}
+                        > Save
+                        </button>
+                        
                 </form>
                 <form 
                     className='modify-trip'
