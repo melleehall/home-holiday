@@ -37,6 +37,11 @@ export default class Trip extends Component {
             }
             return res.json()
         })
+        .then(
+            this.setState({
+                success_msg: true
+            })
+        )
         .catch(error => {
             this.setState({ error })
         })
@@ -226,7 +231,9 @@ export default class Trip extends Component {
                             }}
                         > Save
                         </button>
-                        
+                        <p>
+                            <b>{this.state.success_msg ? 'Trip status updated!' : '' }</b> 
+                        </p>
                 </form>
                 <form 
                     className='modify-trip'
