@@ -98,6 +98,7 @@
 
 .modify-trip {
     background-color: lightblue;
+    color: black;
     display: flex;
     align-items: center;
 }

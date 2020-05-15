@@ -20,7 +20,7 @@ export default class Trip extends Component {
         const tripUpdate = {
             is_taken: this.state.is_taken
         }
-        
+
         this.setState({ error: null })
         fetch(`${config.API_BASE_URL}trips/${this.props.id}`, {
             method: 'PATCH',
@@ -31,22 +31,25 @@ export default class Trip extends Component {
         })
         .then(res => {
             if (!res.ok) {
-              // get the error message from the response,
-              return res.json().then(error => {
-                // then throw it
-                throw error
-              })
+                return res.json().then(error => {
+                    throw error
+                })
             }
+            return res.json()
         })
         .then(data => {
+            let is_taken_status = data[0]
+            console.log(`is_taken_status after calling handleClickUp is ${is_taken_status}`)
             this.setState({
-                success_msg: true
+                is_taken: is_taken_status
             })
         })
         .catch(error => {
             this.setState({ error })
         })
     }
+
+
 
     componentDidMount() {
         this.setState({
