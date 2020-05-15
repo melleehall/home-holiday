@@ -148,3 +148,7 @@ button:hover {
 .down {
     transform: rotate(-180deg);
 }
+
+.conditional-msg {
+    font-style: italic;
+}

@@ -105,14 +105,14 @@ export default class Trip extends Component {
     handleClickDown = (e, tripId, kudos) => {
         e.preventDefault();
 
-        if (kudos === 1) {
+        if (kudos === 0) {
             this.setState({
                 kudos_error: true
             })
             return;
         }
 
-        let newKudos = kudos - 1
+        let newKudos = (kudos - 1).toString()
 
         const updatedTrip = {
             "kudos": newKudos
@@ -204,30 +204,32 @@ export default class Trip extends Component {
                 <form 
                     className='modify-trip'
                 >       
+                    <div className='complete-trip-container'>
                     <label htmlFor='request_service'>
                         Trip Status: <b>{this.state.is_taken ? 'Yes!' : 'Not yet!' }</b> 
                     </label>
-                        <input
-                            type='checkbox'
-                            name='trip_complete'
-                            checked={this.state.is_taken}
-                            onChange={this.toggleTripTaken}
-                            id='trip_complete'
-                        />
-                        <button 
-                            className='kudos-btn up' 
-                            aria-label='upvote'
-                            aria-pressed='false'
-                            onClick={(e) => {
-                                this.handleClickSave(
-                                    e, id, this.state.is_taken
-                                )
-                            }}
-                        > Save
-                        </button>
-                        <p>
-                            <b>{this.state.success_msg ? 'Trip status updated!' : '' }</b> 
-                        </p>
+                    <input
+                        type='checkbox'
+                        name='trip_complete'
+                        checked={this.state.is_taken}
+                        onChange={this.toggleTripTaken}
+                        id='trip_complete'
+                    />
+                    <button 
+                        className='kudos-btn up' 
+                        aria-label='upvote'
+                        aria-pressed='false'
+                        onClick={(e) => {
+                            this.handleClickSave(
+                                e, id, this.state.is_taken
+                            )
+                    }} >
+                        Save
+                    </button>
+                    </div>
+                    <p className='conditional-msg'>
+                        <b>{this.state.success_msg ? 'Trip status updated!' : '' }</b> 
+                    </p>
                 </form>
                 <form 
                     className='modify-trip'
@@ -259,8 +261,8 @@ export default class Trip extends Component {
                         >^
                         </button>
                     </div>
-                    <p className='kudos_error'>
-                        <b>{this.state.kudos_error ? 'Trips cannot be voted down to zero kudos!' : '' }</b> 
+                    <p className='conditional-msg'>
+                        <b>{this.state.kudos_error ? 'Trips cannot receive less than zero kudos!' : '' }</b> 
                     </p>
                 </form>
                 <div className='separation-div'></div>

@@ -206,8 +206,9 @@ export default class AddTripForm extends Component {
                         name='trip-name' 
                         id='trip-name'
                         placeholder='Outerspace'
+                        required aria-required="true"
                         onChange={e => this.updateTripName(e.target.value)} 
-                        aria-required="true" />
+                    />
                     <label htmlFor='description'>
                         Description
                     </label>
@@ -216,8 +217,9 @@ export default class AddTripForm extends Component {
                         name='description' 
                         id='description'
                         placeholder='It is out of this world!'
+                        required aria-required="true"
                         onChange={e => this.updateDescription(e.target.value)} 
-                        aria-required="true" />
+                    />
                 </fieldset>
                 <fieldset className='trip-element-one'>
                     <label htmlFor='element-one'>
@@ -228,8 +230,9 @@ export default class AddTripForm extends Component {
                         name='element-one' 
                         id='element-one'
                         placeholder='The sky is the limit for space-themed cocktails - but here are a few to get you started.'
+                        required aria-required="true"
                         onChange={e => this.updateElementOne(e.target.value)} 
-                        aria-required="true" />
+                    />
                     <label htmlFor='resource-one'>
                         Resource One [Must be a url]
                     </label>
@@ -238,8 +241,9 @@ export default class AddTripForm extends Component {
                         name='resource-one' 
                         id='resource-one'
                         placeholder='https://www.drinkstuff.com/blog/new-horizon-space-inspired-cocktails/'
+                        required aria-required="true"
                         onChange={e => this.updateResourceOne(e.target.value)} 
-                        aria-required="false" />
+                    />
                     <label htmlFor='sense-one'>
                         Sense One
                     </label>
@@ -259,8 +263,9 @@ export default class AddTripForm extends Component {
                         type='text' 
                         name='element-two' 
                         id='element-two'
+                        required aria-required="true"
                         onChange={e => this.updateElementTwo(e.target.value)} 
-                        aria-required="true" />
+                    />
                     <label htmlFor='resource-two'>
                         Resource Two [Must be a url]
                     </label>
@@ -268,8 +273,9 @@ export default class AddTripForm extends Component {
                         type='text' 
                         name='resource-two' 
                         id='resource-two'
+                        required aria-required="true"
                         onChange={e => this.updateResourceTwo(e.target.value)} 
-                        aria-required="false" />
+                    />
                     <label htmlFor='sense-two'>
                         Sense Two
                     </label>
@@ -289,8 +295,9 @@ export default class AddTripForm extends Component {
                         type='text' 
                         name='element-three' 
                         id='element-three'
+                        required aria-required="true"
                         onChange={e => this.updateElementThree(e.target.value)} 
-                        aria-required="true" />
+                    />
                     <label htmlFor='resource-three'>
                         Resource Three
                     </label>
@@ -298,8 +305,9 @@ export default class AddTripForm extends Component {
                         type='text' 
                         name='resource-three' 
                         id='resource-three'
+                        required aria-required="true"
                         onChange={e => this.updateResourceThree(e.target.value)} 
-                        aria-required="false" />
+                    />
                     <label htmlFor='sense-three'>
                         Sense Three [Must be a url]
                     </label>
@@ -319,8 +327,9 @@ export default class AddTripForm extends Component {
                         type='text' 
                         name='element-four' 
                         id='element-four'
+                        required aria-required="true"
                         onChange={e => this.updateElementFour(e.target.value)} 
-                        aria-required="true" />
+                    />
                     <label htmlFor='resource-four'>
                         Resource Four [Must be a url]
                     </label>
@@ -328,8 +337,9 @@ export default class AddTripForm extends Component {
                         type='text' 
                         name='resource-four' 
                         id='resource-four'
+                        required aria-required="true"
                         onChange={e => this.updateResourceFour(e.target.value)} 
-                        aria-required="false" />
+                    />
                     <label htmlFor='sense-four'>
                         Sense Four
                     </label>
@@ -349,8 +359,9 @@ export default class AddTripForm extends Component {
                         type='text' 
                         name='element-five' 
                         id='element-five'
+                        required aria-required="true"
                         onChange={e => this.updateElementFive(e.target.value)} 
-                        aria-required="true" />
+                    />
                     <label htmlFor='resource-five'>
                         Resource Five [Must be a url]
                     </label>
@@ -358,8 +369,9 @@ export default class AddTripForm extends Component {
                         type='text' 
                         name='resource-five' 
                         id='resource-five'
+                        required aria-required="true"
                         onChange={e => this.updateResourceTwo(e.target.value)} 
-                        aria-required="false" />
+                    />
                     <label htmlFor='sense-five'>
                         Sense Five
                     </label>
