@@ -38,3 +38,19 @@ h2 {
 .bold {
     font-weight: 700;
 }
+
+button:hover {
+    cursor: pointer;
+}
+
+.intro-p a {
+    color: #09489D;
+}
+
+/* Large screens (Desktop) */
+@media (min-width: 1024px) {
+    .features-container {
+        display: flex;
+        flex-direction: row;
+    }
+}

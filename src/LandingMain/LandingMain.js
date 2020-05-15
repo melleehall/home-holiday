@@ -9,8 +9,23 @@ export default class LandingMain extends Component {
             <div className='landing-main-container'>
                 <h2>What's a "home holiday"?</h2>
                 <p className='intro-p'>
-                    Home Holiday was inspired by the "virtual vacations" many people around the globe are currently creating in their living rooms and backyards while sheltering at home. 
-                    This virtual vacation generator provides users with full "trip" itineraries that incorporate elements aimed at each of the 5 senses.
+                    Home Holiday was inspired by the virtual vacations many people around the globe are creating in their living rooms and backyards while sheltering at home due to COVID-19.  
+                    To provide the most immersive experience, all itineraries incorporate elements aimed at each of the 5 senses.
+                    Browse our full trip itineraries from the {' '}
+            <NavLink to='/trips' className='bold'>
+                Trips List
+            </NavLink>  
+            {' '}
+            and contribute to the community by adding a travel experience of your own on the 
+            {' '} 
+            <NavLink to='/add-trip' className='bold'>
+                Add Trip 
+            </NavLink>
+            {' '} 
+            page.
+                </p>
+                <p className='intro-p'>
+                    Login credentials are not currently required as we are in the process of curating a robust list of trips from our users.  Simply, click 'Demo' to enjoy all features of home holiday.
                 </p>
             <NavLink to='/dashboard' className='demo-btn'>
                 DEMO
