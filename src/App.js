@@ -69,7 +69,6 @@ export default class App extends Component {
   }
 
   handleAddTripToState = newTrip => {
-    console.log(newTrip)
     this.setState({
       trips: [ ...this.state.trips, newTrip ],
     })

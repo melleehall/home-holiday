@@ -22,8 +22,6 @@ export default class Trip extends Component {
             is_taken: status.toString()
         }
 
-        console.log(tripUpdate)
-
         fetch(`${config.API_BASE_URL}trips/${tripId}`, {
             method: 'PATCH',
             body: JSON.stringify(tripUpdate),
@@ -39,9 +37,6 @@ export default class Trip extends Component {
             }
             return res.json()
         })
-        .then(data =>
-            console.log(data.toString())
-        )
         .catch(error => {
             this.setState({ error })
         })
@@ -98,7 +93,6 @@ export default class Trip extends Component {
         })
         .then(data => {
             let count = data[0]
-            console.log(`count after handleClickUp is ${count}`)
             this.setState({
                 trip_kudos: count
             })
@@ -141,7 +135,6 @@ export default class Trip extends Component {
         })
         .then(data => {
             let count = data[0]
-            console.log(`count after handleClickDown is ${count}`)
             this.setState({
                 trip_kudos: count
             })

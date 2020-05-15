@@ -156,8 +156,6 @@ export default class AddTripForm extends Component {
             resource_five: event.target['resource-five'].value
         }
 
-        console.log(newTrip)
-
         fetch(`${config.API_BASE_URL}trips`, {
             method: 'POST',
             headers: {
@@ -167,7 +165,6 @@ export default class AddTripForm extends Component {
         })
         .then(res => {
             if(!res.ok) {
-                console.log(res.status)
                 throw new Error(res.status)
             }
             return res.json()
